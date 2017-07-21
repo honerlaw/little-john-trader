@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "allowJs": true,
+    "jsx": "react",
+    "outDir": "./bin",
+    "rootDir": "./src",
+    "sourceMap": true,
+    "noImplicitAny": false,
+    "moduleResolution": "node"
+  },
+  "filesGlob": [
+    "./src/**/*.ts",
+    "./src/**/*.tsx"
+  ],
+  "exclude": [
+    "bin"
+  ],
+  "compileOnSave": true
+}
