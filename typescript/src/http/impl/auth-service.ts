@@ -2,7 +2,7 @@ import {HttpService} from "../http-service";
 import {StoreService} from "../../store/store-service";
 import {setTokenAction} from "../../store/user/user-store";
 
-class UserServiceImpl extends HttpService {
+class AuthServiceImpl extends HttpService {
 
     public async login(username: string, password: string, code: string = null): Promise<boolean> {
 
@@ -30,6 +30,18 @@ class UserServiceImpl extends HttpService {
         }
     }
 
+    public async logout(): Promise<boolean> {
+        try {
+            await this.request("/api-token-logout/", {
+                method: "post"
+            });
+            StoreService.getStore().dispatch(setTokenAction(null));
+        } catch (err) {
+            return false;
+        }
+        return true;
+    }
+
 }
 
-export const UserService = new UserServiceImpl();
+export const AuthService = new AuthServiceImpl();
