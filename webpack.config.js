@@ -10,8 +10,12 @@ module.exports = {
     resolve: {
         extensions: [".js", ".jsx", ".json", ".ts", ".tsx"]
     },
-    plugins: [new HtmlWebpackPlugin()],
+    plugins: [new HtmlWebpackPlugin({
+        title: "Little John Trader",
+        favicon: path.resolve(__dirname, "assets", "favicon.ico")
+    })],
     module: {
+
         rules: [
             {
                 test: /\.tsx?$/,
