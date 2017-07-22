@@ -1,4 +1,6 @@
 import * as superagent from "superagent";
+import {StoreService} from "../store/store-service";
+import {IUserStoreStateProps} from "../store/user/user-store";
 
 interface IRequestOptions {
     method: string;
@@ -13,12 +15,20 @@ export abstract class HttpService {
     public async request(url: string, options?: IRequestOptions): Promise<any> {
         const req: superagent.SuperAgentRequest = superagent(!!options ? options.method : "get", `${this.url}${url}`);
 
-        if (options.headers) {
-            for (const prop in options.headers) {
-                if (options.headers.hasOwnProperty(prop)) {
-                    req.set(prop, options.headers[prop]);
-                }
+        if (!options.headers) {
+            options.headers = {};
+        }
+
+        for (const prop in options.headers) {
+            if (options.headers.hasOwnProperty(prop)) {
+                req.set(prop, options.headers[prop]);
             }
+        }
+
+        // add auth header to all requests if available
+        const token: string|null = StoreService.getStore<IUserStoreStateProps>().getState().user.token;
+        if (token !== null) {
+            options.headers.Authorization = `Token ${token}`;
         }
 
         if (options.body) {

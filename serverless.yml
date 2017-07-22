@@ -1,0 +1,14 @@
+service: little-john-static-webapp
+
+stage: dev
+region: us-east-1
+
+provider:
+  name: aws
+
+plugins:
+  - serverless-client-s3
+
+custom:
+  client:
+    bucketName: little-john-static-webapp-assets

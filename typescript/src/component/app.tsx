@@ -13,13 +13,7 @@ import {Auth} from "./user/auth";
 
 import "../../../assets/style.scss";
 
-// serve static assets: https://github.com/sdd/serverless-apig-s3
-
-interface IAppProps extends IUserStoreStateProps {
-
-}
-
-export class App extends React.Component<IAppProps, {}> {
+export class App extends React.Component<IUserStoreStateProps, {}> {
 
     public render(): JSX.Element {
         if (this.props.user.token === null) {

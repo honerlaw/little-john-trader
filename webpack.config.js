@@ -5,7 +5,7 @@ module.exports = {
     entry: "./typescript/src/component/app.tsx",
     output: {
         filename: "bundle.js",
-        path: path.resolve(__dirname, "dist")
+        path: path.resolve(__dirname, "client", "dist")
     },
     resolve: {
         extensions: [".js", ".jsx", ".json", ".ts", ".tsx"]
@@ -29,7 +29,7 @@ module.exports = {
         ]
     },
     devServer: {
-        contentBase: path.resolve(__dirname, "dist"),
+        contentBase: path.resolve(__dirname, "client", "dist"),
         historyApiFallback: true
     }
 };
